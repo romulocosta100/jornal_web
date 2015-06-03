@@ -1,0 +1,1 @@
+insert into role(id_role,papel) values (1,'leitor') , (2,'editor') ,(3,'jornalista');
