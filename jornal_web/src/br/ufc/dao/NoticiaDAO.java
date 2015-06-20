@@ -6,10 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.ufc.model.Noticia;
 
 @Repository
+@Transactional
 public class NoticiaDAO implements INoticiaDAO{
 	
 	@PersistenceContext

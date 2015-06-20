@@ -9,13 +9,14 @@
 <body>
 
 	<h1>CADASTRO DE JORNALISTA</h1>
-		<form action="add_usuario" method="post">
+		<form action="add_jornalista" method="POST" enctype="multipart/form-data">
 		Nome :<input type="text" name="nome"><br>
 		Login:<input type="text" name="login"><br>
 		Senha:<input type="password" name="senha" ><br>
 		Email:<input type="text" name="email"><br>
 			 <input type="hidden" name="id_role" value="3">
-		<input type="submit" name="loga"> <br>
+			<input type="file" name="file" ><br>	 
+		    <input type="submit" name="loga"> <br>
 		
 		</form>
 

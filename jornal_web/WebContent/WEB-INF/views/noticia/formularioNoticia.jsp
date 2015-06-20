@@ -10,7 +10,7 @@
 <body>
 
 
-	<form action="add_noticia" method="post">
+	<form method="POST" enctype="multipart/form-data" action="add_noticia">
 	Titulo:<input type="text" name="titulo"><br>
 	Subtitulo:<input type="text" name="subtitulo"><br>
 	Notícia:<textarea rows="10" cols="10" name="texto"></textarea><br>
@@ -21,11 +21,12 @@
 				<option value="${secao.id_secao}">${secao.titulo }</option>
 			</c:forEach>
 		 
-		</select>
-		<input  type="hidden" name="id_autor" value="${usuario.id_usuario}">
+		</select><br>
+		<input type="file" name="file" ><br>
 		<input type="submit"><br> 
 	
 	</form>
+	<a href="index.jsp">INDEX</a>
 
 </body>
 </html>

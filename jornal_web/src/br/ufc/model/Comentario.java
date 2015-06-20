@@ -18,13 +18,13 @@ public class Comentario {
 	private String texto;
 	
 	
-	@ManyToOne(optional=false,cascade=CascadeType.ALL)
+	@ManyToOne(optional=false)
 	@JoinColumn(name="id_autor",referencedColumnName="id_usuario")
 	private Usuario autor;
 	
 	
 
-	@ManyToOne(optional=false,cascade=CascadeType.ALL)
+	@ManyToOne(optional=false)
 	@JoinColumn(name="id_noticia",referencedColumnName="id_noticia")
 	private Noticia noticia;
 

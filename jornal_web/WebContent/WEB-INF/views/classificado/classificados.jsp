@@ -36,8 +36,14 @@
 				<td>${classificado.melhor_oferta }</td>
 			</tr>
 			<tr>	
-				<td>Data</td>
-				<td>${classificado.data_oferta }</td>
+				<td>Data da oferta</td>
+				<c:if test="${classificado.data_oferta!=null }">
+					<td>${classificado.data_oferta }</td>
+				</c:if>
+				<c:if test="${classificado.data_oferta==null }">
+					<td>-</td>
+				</c:if>
+				
 			</tr>
 			<c:forEach var="role" items="${usuario.roles}">
 			
@@ -45,8 +51,10 @@
 					<tr>	
 						<td>Oferta</td>
 						<td>
-							${id_classificado}
-							<a href="ofertar" >Ofertar</a>	
+							<form action="ofertar">
+								<button type="submit" name="id_classificado" value="${classificado.id_classificado}" >Ofertar</button>
+								
+							</form>	
 						</td>
 					</tr>
 			   </c:if>

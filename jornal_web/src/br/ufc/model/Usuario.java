@@ -32,9 +32,12 @@ public class Usuario {
 	private String senha;
 	private String nome;
 	private String email;
+	private String caminho_imagem;
 	
 	
 	
+
+
 	@OneToMany(mappedBy="autor",targetEntity=Classificado.class,fetch = FetchType.LAZY)
 	List<Classificado> classificados;
 	
@@ -66,8 +69,40 @@ public class Usuario {
 	}
 	
 	
+	public String getCaminho_imagem() {
+		return caminho_imagem;
+	}
+
+
+	public void setCaminho_imagem(String caminho_imagem) {
+		this.caminho_imagem = caminho_imagem;
+	}
 	
 	
+	
+	public boolean isJornalista(){
+		for (Role role :roles) {
+			if(role.getPapel().equals("jornalista"))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean isEditor(){
+		for (Role role :roles) {
+			if(role.getPapel().equals("editor"))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean isLeitor(){
+		for (Role role :roles) {
+			if(role.getPapel().equals("leitor"))
+				return true;
+		}
+		return false;
+	}
 	public long getId_usuario() {
 		return id_usuario;
 	}

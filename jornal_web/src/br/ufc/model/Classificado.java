@@ -23,7 +23,7 @@ public class Classificado {
 	private String texto;
 	private float preco;
 	private String telefone;
-	private float melhor_oferta;
+	private float melhor_oferta=0;
 	private Date data_oferta;
 	
 	

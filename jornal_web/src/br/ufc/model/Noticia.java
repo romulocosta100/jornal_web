@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -25,8 +26,10 @@ public class Noticia {
 	private String subtitulo;
 	private String texto;
 	private Date data_noticia;
+	private String caminho_imagem;
 	
-	
+
+
 
 	@ManyToOne(optional=false)
 	@JoinColumn(name="id_autor",referencedColumnName="id_usuario")
@@ -38,10 +41,20 @@ public class Noticia {
 	private Secao secao;
 	
 	
-	@OneToMany(mappedBy="noticia",targetEntity=Comentario.class,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="noticia",targetEntity=Comentario.class,cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Comentario> comentarios;
 
 
+
+	public String getCaminho_imagem() {
+		return caminho_imagem;
+	}
+
+
+	public void setCaminho_imagem(String caminho_imagem) {
+		this.caminho_imagem = caminho_imagem;
+	}
+	
 	public long getId_noticia() {
 		return id_noticia;
 	}

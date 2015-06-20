@@ -1,5 +1,6 @@
 package br.ufc.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -28,8 +29,29 @@ public class ClassificadoController {
 	
 	
 	
+	
+	@RequestMapping("efetuar_oferta")
+	public String efetuarOfertar(Classificado classificado,HttpSession session,float oferta){
+		classificado = classificadoDAO.buscar(classificado);
+		Usuario autor = (Usuario) session.getAttribute("usuario");
+		if(oferta >=classificado.getPreco() && oferta>classificado.getMelhor_oferta()){
+			classificado.setMelhor_oferta(oferta);
+			classificado.setAutor(autor);
+			classificado.setData_oferta(new Date());
+			classificadoDAO.alterar(classificado);
+			return "redirect:classificados";
+		}
+			
+		
+		return "redirect:classificados";
+	}
+	
+	
 	@RequestMapping("ofertar")
-	public String ofertar(long id_classificado){
+	public String ofertar(Classificado classificado,Model model){
+		
+		classificado = classificadoDAO.buscar(classificado);
+		model.addAttribute("classificado", classificado);
 		return "classificado/ofertaDeCompra";
 	}
 	
@@ -43,8 +65,11 @@ public class ClassificadoController {
 	}
 	
 	@RequestMapping("formulario_classificado")
-	public String formularioClassificao(){
-		return "classificado/formularioClassificado";
+	public String formularioClassificao(HttpSession session){
+		Usuario usarioLogado = (Usuario) session.getAttribute("usuario");
+		if(usarioLogado.isEditor())
+			return "classificado/formularioClassificado";
+		return "../../index";
 	}
 	
 	
