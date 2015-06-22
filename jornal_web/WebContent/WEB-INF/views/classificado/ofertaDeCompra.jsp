@@ -8,6 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<c:import url="/topo"></c:import>
+
+<!-- 
 	<HR WIDTH=90%>
 	<h1>
 	
@@ -34,9 +38,41 @@
 		</form>
 		
 	</h1>
-	<HR WIDTH=90%>	
-	
-	
+	<HR WIDTH=90%>
+ -->
+
+	<div class="container"> 
+		<blockquote>
+			<p>
+				Preço inicial : ${classificado.preco}<br>
+				<c:if test="${classificado.melhor_oferta==0}">
+			Melhor oferta : sem lance ate agora<br>
+				</c:if>
+				<c:if test="${classificado.melhor_oferta!=0}">
+			Melhor oferta : ${classificado.melhor_oferta}<br>
+				</c:if>
+			</p>
+			<footer>Faça a oferta</footer>
+		</blockquote>
+
+
+		<form action="efetuar_oferta" method="post">
+			<table>
+				<tr>
+					<td>Sua oferta</td>
+					<td><input type="number" step="any" name="oferta"></td>
+					<td>
+						<button type="submit" name="id_classificado"
+							value="${classificado.id_classificado}">Ok</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+
+
+
 
 </body>
 </html>

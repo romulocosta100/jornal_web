@@ -60,6 +60,7 @@ public class ClassificadoController {
 	@RequestMapping("classificados")
 	public String listaClassificados(Model model){
 		List<Classificado> classificados = classificadoDAO.listar();
+		
 		model.addAttribute("classificados", classificados);
 		return "classificado/classificados";
 	}

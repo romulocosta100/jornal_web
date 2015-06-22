@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -112,14 +113,23 @@ public class UsuarioController {
 
 
 		//Arquivo
-		String imagem = "/home/romulo/img_jornal/jornalista/"+file.getOriginalFilename();
+		
 		if (!file.isEmpty()) {
 			try {
+				String nomeImg = new Date().getTime()+"-"+file.getOriginalFilename();
+				String imagem = "/home/romulo/img_jornal/img_jornalista/"+nomeImg;	
+				
+				
+				
 				byte[] bytes = file.getBytes();
 				BufferedOutputStream stream =
 						new BufferedOutputStream(new FileOutputStream(new File(imagem)));
 				stream.write(bytes);
 				stream.close();
+				
+				//Set imagem
+				usuario.setCaminho_imagem(nomeImg);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 				return "";
@@ -135,8 +145,6 @@ public class UsuarioController {
 		System.out.println(role.getId_role());
 
 		
-		//add imagem
-		usuario.setCaminho_imagem(imagem);
 		
 		Role papel = roleDAO.buscar(role);
 		List<Role> papeis = new ArrayList<Role>(); 

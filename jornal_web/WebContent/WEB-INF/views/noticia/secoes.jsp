@@ -8,13 +8,18 @@
 <title>Seções</title>
 </head>
 <body>
+
+	<c:import url="/topo"></c:import>
+	
 	<center>
 		<h1>Seções</h1>
 		<HR WIDTH=50%>
 		<c:forEach var="secao" items="${secoes}">
 				<c:if test="${not empty secao.noticias}">
-					<h2> <a href="manchete?id_secao=${secao.id_secao}">${secao.titulo }</a> </h2>
+				
+				<h2> <a href="manchete?id_secao=${secao.id_secao}">${secao.titulo }</a> </h2>
 					<HR WIDTH=50%>
+					
 				</c:if>
 		</c:forEach>
 	

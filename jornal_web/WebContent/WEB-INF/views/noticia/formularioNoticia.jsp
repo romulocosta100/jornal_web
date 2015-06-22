@@ -9,7 +9,9 @@
 </head>
 <body>
 
+	<c:import url="/topo"></c:import>
 
+<!-- 
 	<form method="POST" enctype="multipart/form-data" action="add_noticia">
 	Titulo:<input type="text" name="titulo"><br>
 	Subtitulo:<input type="text" name="subtitulo"><br>
@@ -26,7 +28,45 @@
 		<input type="submit"><br> 
 	
 	</form>
-	<a href="index.jsp">INDEX</a>
+ -->	
+		
+
+	<div class="container">	
+	<form method="POST" enctype="multipart/form-data" action="add_noticia">
+		<div class="form-group">
+			<label for="exampleInputEmail1">Titulo</label> 
+			<input type="text" name="titulo" class="form-control" placeholder="Titulo">
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputEmail1">SubTitulo</label> 
+			<input type="text" name="subtitulo" class="form-control" placeholder="SubTitulo">
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputEmail1">Texto</label>
+			<textarea class="form-control" name="texto" rows="7"></textarea>
+		</div>
+		
+		<div class="form-group" >
+			<label for="exampleInputEmail1">Seção</label>
+			<select name="id_secao" class="form-control">
+				<c:forEach var="secao" items="${secoes}">
+					<option value="${secao.id_secao}">${secao.titulo }</option>
+				</c:forEach>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputEmail1">Imagem</label> 
+			<input type="file" name="file">
+			
+		</div>
+		
+		<button type="submit" class="btn btn-default">Cadastrar</button>
+	</form>
+	</div>
+
 
 </body>
 </html>

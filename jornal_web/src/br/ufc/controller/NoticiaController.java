@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,8 @@ public class NoticiaController {
 	private ISecaoDAO secaoDAO;
 	@Autowired
 	private IUsuarioDAO usuarioDAO;
+	@Autowired
+	private ServletContext servletContext;
 
 
 
@@ -60,12 +63,12 @@ public class NoticiaController {
 	@RequestMapping("manchete")
 	public String manchete(Secao secao,Model model){
 		secao = secaoDAO.buscar(secao);
-		List<Noticia> noticias = secao.getNoticias();
-		System.out.println("AQUIIIIIIIIIIIIIIIIIIIII");
+		List<Noticia> noticias = noticiaDAO.listarSecao(secao);
+		
 		for (Noticia noticia : noticias) {
-			System.out.println(noticia.getSubtitulo()+"");
+			System.out.println(noticia.getTitulo()+"");
 		}
-		System.out.println("AQUIIIIIIIIIIIIIIIIIIIII");
+		
 		model.addAttribute("noticias",noticias);
 		return "noticia/manchete";
 	}
@@ -117,17 +120,24 @@ public class NoticiaController {
 
 	@RequestMapping(value="add_noticia", method=RequestMethod.POST)
 	public String addNoticia(Noticia noticia,HttpSession session,Secao secao,@RequestParam("file") MultipartFile file){
-
-
-		//Arquivo
-		String imagem = "/home/romulo/img_jornal/"+file.getOriginalFilename();
+		
+		
 		if (!file.isEmpty()) {
 			try {
+				
+				String nomeImg = new Date().getTime()+"-"+file.getOriginalFilename();
+				String imagem = "/home/romulo/img_jornal/img_noticia/"+nomeImg;	
+				
 				byte[] bytes = file.getBytes();
 				BufferedOutputStream stream =
 						new BufferedOutputStream(new FileOutputStream(new File(imagem)));
 				stream.write(bytes);
 				stream.close();
+				
+				//Set imagem
+				noticia.setCaminho_imagem(nomeImg);
+				
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 				return "";
@@ -138,8 +148,7 @@ public class NoticiaController {
 
 
 
-		//Set imagem
-		noticia.setCaminho_imagem(imagem);
+		
 
 
 		//Buscar usuário autor

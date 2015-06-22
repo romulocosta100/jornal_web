@@ -9,6 +9,10 @@
 </head>
 <body>
 
+	<c:import url="/topo"></c:import>
+
+
+<!-- 
 	<center>
 	
 		<h1>Manchetes</h1>
@@ -20,6 +24,27 @@
 		</c:forEach>
 	
 	</center>
+	
+ -->
+
+
+
+	<center>
+		<h1>Manchetes</h1>
+		<c:forEach var="noticia" items="${noticias}">
+		<div class="container">
+			<div class="jumbotron">
+				<h1>${noticia.titulo}</h1>
+				<p>${noticia.subtitulo}</p>
+				<p>
+					<a class="btn btn-primary btn-lg" href="ler_noticia?id_noticia=${noticia.id_noticia}" role="button">Ler Completo</a>
+				</p>
+			</div>
+			
+		</c:forEach>
+
+	</center>
+ 
 
 </body>
 </html>

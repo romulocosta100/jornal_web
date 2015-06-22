@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.ufc.model.Noticia;
+import br.ufc.model.Secao;
 
 @Repository
 @Transactional
@@ -58,6 +59,13 @@ public class NoticiaDAO implements INoticiaDAO{
 		// TODO Auto-generated method stub
 		Noticia noticia2 = this.manager.find(Noticia.class,noticia.getId_noticia());
 		return noticia2;
+	}
+
+	@Override
+	public List<Noticia> listarSecao(Secao secao) {
+		String hql = "select n from Noticia n where id_secao='"+secao.getId_secao()+"'";
+		return this.manager.createQuery(hql,Noticia.class).getResultList();
+		
 	}
 
 	

@@ -33,7 +33,7 @@ public class ComentarioController {
 		comentario.setAutor(autor);
 		comentario.setNoticia(noticia);
 		comentarioDAO.add(comentario);
-		return "redirect:lita_secoes";
+		return "redirect:ler_noticia?id_noticia="+noticia.getId_noticia();
 	}
 	
 	

@@ -9,6 +9,8 @@
 </head>
 <body>
 	
+	<c:import url="/topo"></c:import>
+	
     <h1>Notícias</h1>
 	<center>
 		<table border="2">	
