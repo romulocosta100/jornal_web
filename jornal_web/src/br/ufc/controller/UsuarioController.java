@@ -36,6 +36,14 @@ public class UsuarioController {
 	private RoleDAO roleDAO;
 
 
+	
+	@RequestMapping("loginOut")
+	public String loginOut(HttpSession session){
+		session.setAttribute("usuario",null);
+		return "redirect:formularios_login";
+	}
+	
+	
 	@RequestMapping("cadastrar_jornalista")
 	public String formularioJornalista(HttpSession session){
 		Usuario usarioLogado = (Usuario) session.getAttribute("usuario");
